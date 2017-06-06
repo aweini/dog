@@ -30,11 +30,11 @@ module.exports = {
                 use : ['url-loader?limit=8192']
             },
             {
-                test: /\.(mp4|ogg|svg))/,
+                test: /\.(mp4|ogg|svg)/,
                 use: ['file-loader']
             },
             {
-                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$)/,
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
                 use: ['url-loader?limit=10000&mimetype=application/font-woff']
             },
             {
