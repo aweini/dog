@@ -7,7 +7,7 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
 const config = require('./webpack.config');
 
-const bs = require("browser-sync").create();
+//const bs = require("browser-sync").create();
 //webpack打包的时候首先连接到这个服务器,然后等待文件被编译
 config.entry.unshift('webpack-hot-middleware/client?reload=true');
 
