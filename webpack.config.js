@@ -1,5 +1,5 @@
 /**
- * Created by mahong on 17/6/6.
+ * Created by mahong on 17/6/6. webpack edit reboot
  */
 const path = require("path");
 const webpack = require("webpack");
@@ -49,6 +49,13 @@ module.exports = {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 use: ['url-loader?limit=10000&mimetype=image/svg+xml']
             }
+        ]
+    },
+    resolve:{
+        modules:[
+            'node_modules',
+            path.resolve(__dirname, 'src/common'),
+            path.resolve(__dirname, './src/components')
         ]
     },
     plugins: [

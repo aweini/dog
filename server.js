@@ -22,6 +22,6 @@ app.use(webpackDevMiddleware(compiler, {publicPath: '/assets/'}));
 
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/', (req, res)=> res.sendFile(path.resolve(__dirname, 'src/index.html')) )
+app.get('/', (req, res)=> {res.sendFile(path.resolve(__dirname, 'src/index.html'))} )
 
 app.listen(port);
