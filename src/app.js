@@ -9,7 +9,7 @@ import Nav from "nav/Nav";
 import CardWrap from 'cardWrap/CardWrap';
 
 require('semantic-ui/dist/semantic.css');
-require('./common/style/main.css');
+require('style/main.css');
 
 
 
