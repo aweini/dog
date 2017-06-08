@@ -21,9 +21,19 @@ let contextTypes = {
     et: PropTypes.string
 }
 export default class Card extends Component{
+    //初始化组建的内部状态,需要再类的constructor里进行
+    constructor(){
+        super();
+        this.state = {
+            isHeart : false
+        };
+
+    }
+
     render(){
         let { imageSrc, name, meta, joinDate, desc, friendNum } = this.props;
         let {et} = this.context;
+        let isHeart = (this.state.isHeart==true?'':'empty');
         return (
             <div className="card">
                 <div className="image">
@@ -38,7 +48,7 @@ export default class Card extends Component{
                 </div>
                 <div className="extra content">
                     <span className="right floated">{`${et} in ${joinDate}`}</span>
-                    <span><i className="user icon"></i>{`${friendNum} Friends`}</span>
+                    <span><i className={`${isHeart} heart icon`} onClick={()=>{ this.state.isHeart = !this.state.isHeart; this.setState({isHeart:this.state.isHeart}); } }></i>{`${friendNum} Friends`}</span>
                 </div>
             </div>
         )
