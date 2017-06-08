@@ -6,10 +6,11 @@ import React, {Component} from 'react';
 export default class Nav extends Component{
     render(){
         return(
-            <div className="ui three item menu">
-                <a className="active item">Editorials</a>
-                <a className="item">Reviews</a>
-                <a className="item">Upcoming Events</a>
+            <div className="ui menu">
+                <div className="header item">Our Company </div>
+                <a className="item">About Us </a>
+                <a className="item">Jobs </a>
+                <a className="item">Locations </a>
             </div>
         )
 
