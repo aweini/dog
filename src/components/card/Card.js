@@ -36,10 +36,13 @@ export default class Card extends Component{
         this.addYear = this.addYear.bind(this);
 
     }
-    clickHeart(){
+    clickHeart(event){
         let {isHeart} = this.state;
         isHeart = !isHeart;
         this.setState({isHeart});
+        console.log(event);//react封装的event
+        console.log(event.nativeEvent);//原生event
+        console.log(event.target);//原生element
     };
 
 
