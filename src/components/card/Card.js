@@ -27,8 +27,14 @@ export default class Card extends Component{
         this.state = {
             isHeart : false
         };
+        this.clickHeart = this.clickHeart.bind(this);//改变clickHeart函数内部this指向
 
     }
+    clickHeart(){
+        let {isHeart} = this.state;
+        isHeart = !isHeart;
+        this.setState({isHeart});
+    };
 
     render(){
         let { imageSrc, name, meta, joinDate, desc, friendNum } = this.props;
@@ -48,7 +54,8 @@ export default class Card extends Component{
                 </div>
                 <div className="extra content">
                     <span className="right floated">{`${et} in ${joinDate}`}</span>
-                    <span><i className={`${isHeart} heart icon`} onClick={()=>{ this.state.isHeart = !this.state.isHeart; this.setState({isHeart:this.state.isHeart}); } }></i>{`${friendNum} Friends`}</span>
+                    <span><i className={`${isHeart} heart icon`} onClick={this.clickHeart}></i>{`${friendNum} Friends`}</span>
+
                 </div>
             </div>
         )
