@@ -22,12 +22,18 @@ let contextTypes = {
 }
 export default class Card extends Component{
     //初始化组建的内部状态,需要再类的constructor里进行
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        //props内的值不可以更改,是只读的
+        //先setState更新相应的属性,会把setState的值合并到state,合并是浅层合并,会把属性的整个值都合并到属性即使他是一个对象,这样就更新了state
+        //setState可能是异步更新的,批量更新的, setState后state不是立刻更新,而是把setState放到一个队列,到时候一起更新
+
         this.state = {
-            isHeart : false
+            isHeart : false,
+            year : parseInt(this.props.joinDate)
         };
         this.clickHeart = this.clickHeart.bind(this);//改变clickHeart函数内部this指向
+        this.addYear = this.addYear.bind(this);
 
     }
     clickHeart(){
@@ -36,10 +42,27 @@ export default class Card extends Component{
         this.setState({isHeart});
     };
 
+
+    addYear(){
+        let {year}  = this.state;
+        this.setState({
+            year: year+1
+        });//
+
+        //this.setState({
+        //    year: this.state.year+1 //由于异步,这样this.state.year已经不是原来的year
+        //});
+        this.clickHeart();//两次setState只会引起一次render()
+        console.log(this.state.year);//打印的数据是setState之前的,setState是异步的还没有执行
+
+        //如果上面的放在一个异步函数如settimeout执行就不再是异步的
+    };
+
     render(){
         let { imageSrc, name, meta, joinDate, desc, friendNum } = this.props;
         let {et} = this.context;
         let isHeart = (this.state.isHeart==true?'':'empty');
+        let {year} = this.state;
         return (
             <div className="card">
                 <div className="image">
@@ -53,7 +76,7 @@ export default class Card extends Component{
                     <div className="description">{desc}</div>
                 </div>
                 <div className="extra content">
-                    <span className="right floated">{`${et} in ${joinDate}`}</span>
+                    <span className="right floated" onClick={this.addYear}>{`${et} in ${year}`}</span>
                     <span><i className={`${isHeart} heart icon`} onClick={this.clickHeart}></i>{`${friendNum} Friends`}</span>
 
                 </div>
