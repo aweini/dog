@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 //var ReactDOM = require("react-dom");
 import Nav from "nav/Nav";
 import CardWrap from 'cardWrap/CardWrap';
+import Home from 'home/Home';
 
 require('semantic-ui/dist/semantic.css');
 require('style/main.css');
@@ -55,21 +56,49 @@ let data = [
     }
 ];
 
+import homeImg from 'images/cat.jpg';
+
+
 // context 跨组建传递数据 破坏组建的封装性,难以复用,使数据流向不再清晰,熟悉redux再使用
 class App extends Component{
+    constructor(){
+        super();
+        this.state = {
+            view: "home"
+        }
+        this.changeView = this.changeView.bind(this);
+    }
+
     getChildContext(){ //PropTypes提供 给所有子类实例提供context {et: 'Promotion'}
         return {
             et: "Promotion"
         }
     }
 
+    changeView(view){
+        this.setState({
+            view
+        })
+    }
+
     render(){
-        let {data} = this.props;
+        let {data, homeImg} = this.props;
+        let currentView = null;
+        let {view}= this.state;
+        switch (view){
+            case 'cards':
+                currentView =  <CardWrap data={data}></CardWrap>;
+                break;
+            case 'home':
+                currentView = <Home homeImg = {homeImg} />;
+            default:
+        }
+
         return (
             <div className="ui container">
                 <div className=""></div>
-                <Nav/>
-                <CardWrap data={data}></CardWrap>
+                <Nav changeView={this.changeView}/>
+                {currentView}
             </div>
         )
     }
@@ -80,7 +109,7 @@ App.childContextTypes = {
 }
 
 ReactDOM.render(
-    <App data={data}/>,
+    <App data={data} homeImg={homeImg}/>,
     document.getElementById('wrap')
 )
 
