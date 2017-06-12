@@ -2,6 +2,7 @@
  * Created by mahong on 17/6/6.
  */
 const webpack = require('webpack');
+//nodejs不支持es6 的 import,但支持 const
 const path = require("path");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");

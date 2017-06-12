@@ -10,7 +10,7 @@ export default class Nav extends Component{
         //用回调函数的形式 执行父组建传过来的函数  changeView('home')直接写是执行啊
         return(
             <div className="ui menu">
-                <div className="header item">Our Company </div>
+                <div className="header item">Our Companyy </div>
                 <a className="item" onClick={()=>changeView('home')}>Home </a>
                 <a className="item" onClick={()=>{changeView('cards')}}>Cards </a>
                 <a className="item">Locations </a>
